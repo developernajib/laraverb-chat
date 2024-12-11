@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Chat\Pages\RoomShow;
 
 Route::view('/', 'welcome');
 
@@ -13,3 +14,8 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/chat/{room:slug}', RoomShow::class)
+    ->middleware(['auth', 'verified'])
+    ->name('chat.show');
