@@ -14,9 +14,7 @@
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-9">
             <div class="p-6 text-gray-900">
-                <div>
-                    Message
-                </div>
+                <livewire:chat.messages :room="$room" />
 
                 <form class="mt-3" x-data="{ shift: false }" x-on:keydown.shift="shift = true"
                     x-on:keyup.shift="shift = false"

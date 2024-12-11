@@ -5,6 +5,7 @@ namespace App\Livewire\Chat\Pages;
 use Livewire\Component;
 use App\Models\Room;
 use App\Models\Message;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 
 class RoomShow extends Component
@@ -23,11 +24,13 @@ class RoomShow extends Component
         $message->save();
 
         $this->reset('message');
+
+        $this->dispatch('message.created', $message->id);
     } 
 
     #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.chat.pages.room-show')->layout('layouts.app');
+        return view('livewire.chat.pages.room-show');
     }
 }
