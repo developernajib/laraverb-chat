@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\Message;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
+use App\Events\MessageCreated;
 
 class RoomShow extends Component
 {
@@ -26,6 +27,8 @@ class RoomShow extends Component
         $this->reset('message');
 
         $this->dispatch('message.created', $message->id);
+
+        broadcast(new MessageCreated($this->room, $message))->toOthers();
     } 
 
     #[Layout('layouts.app')]

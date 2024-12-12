@@ -26,6 +26,11 @@ class Messages extends Component
         $this->messages->push(Message::with('user')->find($id));
     }
 
+    #[On('echo-private:chat.room.{room.slug},MessageCreated')]
+    public function prependMessageFromBroadcast(array $payload){
+        $this->prependMessage($payload['message']['id']);
+    }
+
     public function render()
     {
         return view('livewire.chat.messages');
