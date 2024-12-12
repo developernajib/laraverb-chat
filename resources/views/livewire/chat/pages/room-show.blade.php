@@ -6,26 +6,21 @@
 
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-12 gap-6">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-3">
-            <div class="p-6 text-gray-900">
-                Users
-            </div>
-        </div>
+        <livewire:chat.users :room="$room" />
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-9">
             <div class="p-6 text-gray-900">
                 <livewire:chat.messages :room="$room" />
 
-                <form class="mt-3" x-data="{ shift: false }" x-on:keydown.shift="shift = true"
-                    x-on:keyup.shift="shift = false"
-                    x-on:keyup.enter.prevent="if(!shift && $event.target.value) {$wire.submit()}"
-                    x-on:keydown.enter="if(!shift || !$event.target.value) {$event.preventDefault()}">
+                <form class="mt-3">
 
                     <label for="message" class="sr-only">Message</label>
 
                     <textarea name="message" id="message" rows="4"
                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
-                        placeholder="Message here" wire:model="message"></textarea>
+                        placeholder="Message here" wire:model="message" x-data="{ shift: false }" x-on:keydown.shift="shift = true"
+                        x-on:keyup.shift="shift = false" x-on:keyup.enter.prevent="if(!shift && $event.target.value) {$wire.submit()}"
+                        x-on:keydown.enter="if(!shift || !$event.target.value) {$event.preventDefault()}"></textarea>
 
                 </form>
             </div>
