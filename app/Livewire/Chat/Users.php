@@ -14,10 +14,24 @@ class Users extends Component
 
     public Room $room;
     public array $ids = [];
+    public array $typingIds = [];
 
     #[Computed()]
     public function users(){
         return User::find($this->ids);
+    }
+
+    #[On('echo-private:chat.room.{room.slug},.client-typing')]
+    public function setTyping($user){
+        if(in_array($user['id'], $this->typingIds)){
+            return;
+        }
+        $this->typingIds[] = $user['id'];
+    }
+
+    #[On('echo-private:chat.room.{room.slug},.client-not-typing')]
+    public function setNotTyping($user){
+        $this->typingIds = array_diff($this->typingIds, [$user['id']]);
     }
 
     #[On('echo-presence:chat.room.{room.slug},here')]
@@ -27,6 +41,9 @@ class Users extends Component
     
     #[On('echo-presence:chat.room.{room.slug},joining')]
     public function setUserJoining($user){
+        if(in_array($user['id'], $this->ids)){
+            return;
+        }
         $this->ids[] = $user['id'];
     }
 
