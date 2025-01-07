@@ -24,8 +24,7 @@ class Delete extends Component
     {
         $room = Room::findOrFail($this->roomId);
         $room->delete();
-
-        $this->emit('roomDeleted');
+        $this->emit('refetchData');
     }
 
     public function render()

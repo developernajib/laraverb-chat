@@ -31,7 +31,7 @@ class Edit extends Component
         $room->save();
 
         $this->reset(['open']);
-        $this->emit('roomUpdated');
+        $this->emit('refetchData');
     }
 
     #[Layout('layouts.app')]

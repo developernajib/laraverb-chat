@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 
 class Index extends Component
 {
-    protected $listeners = ['roomCreated' => '$refresh'];
+    protected $listeners = ['refetchData' => '$refresh'];
 
     #[Layout('layouts.app')]
     public function render()

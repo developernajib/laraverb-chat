@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Room;
 use Illuminate\Support\Str;
 
-class Modal extends Component
+class Create extends Component
 {
     public $open = false;
     public $name;
@@ -25,11 +25,11 @@ class Modal extends Component
         ]);
 
         $this->reset(['open', 'name']);
-        $this->emit('roomCreated');
+        $this->emit('refetchData');
     }
 
     public function render()
     {
-        return view('livewire.room.modal');
+        return view('livewire.room.create');
     }
 }
