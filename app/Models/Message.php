@@ -14,14 +14,14 @@ class Message extends Model
         $date = Carbon::parse($value);
 
         if ($date->isToday()) {
-            return "Today " . $date->format('g:i A');
+            return "Today, " . $date->format('g:i A');
         }
 
         if ($date->isYesterday()) {
-            return "Yesterday " . $date->format('g:i A');
+            return "Yesterday, " . $date->format('g:i A');
         }
 
-        return $date->diffForHumans(null, true) . " " . $date->format('g:i A');
+        return $date->diffForHumans(null, true) . " ago, " . $date->format('g:i A');
     }
 
     public function user(){
